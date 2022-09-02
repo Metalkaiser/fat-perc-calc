@@ -4,9 +4,9 @@ require('dotenv').config();
 const bp = require('body-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const mongoose = require('mongoose');
-const passportLocalMongoose = require('passport-local-mongoose');
+
 const bcrypt = require('bcrypt');
+const userDetails = require('./app/database/userdb');
 const saltOrRounds = 12;
 
 const session = require('express-session');
@@ -14,41 +14,12 @@ const session = require('express-session');
 const app = express();
 const port = process.env.PORT;
 
-mongoose.connect(process.env.DBURI);
-
-const Schema = mongoose.Schema;
-const user = new Schema({
-  id: Number,
-  email: String,
-  password: String,
-  details: {
-    name: String,
-    lastname: String,
-    birthdate: Date,
-    gender: String
-  },
-  history: {
-    date: Date,
-    height: String,
-    weight: String,
-    pfat: Number
-  },
-  profile: {
-    theme: String,
-    lang: String
-  }
-});
-
-const userDetails = mongoose.model('UserInfo',user,'personas');
-user.clearIndexes();
 
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: false
 }));
-
-user.plugin(passportLocalMongoose);
 
 app.use(bp.urlencoded({ extended: false }));
 app.use(bp.json());

@@ -2,9 +2,11 @@ const express = require('express');
 
 require('dotenv').config();
 const bp = require('body-parser');
-const passport = require('./app/config/auth');
-const userDetails = require('./app/database/userdb');
-const auth = require('./app/routes/auth');
+const passport = require('./src/config/auth');
+const userDetails = require('./src/config/userdb');
+const auth = require('./src/routes/auth');
+const fat = require('./src/routes/calcfat');
+const diet = require('./src/routes/calcdiet');
 
 const session = require('express-session');
 
@@ -33,6 +35,8 @@ passport.deserializeUser((id, done) => {
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use('/fat', fat);
+app.use('/diet', diet);
 
 
 app.get('/', auth.checkAuthenticated, (req, res) => {

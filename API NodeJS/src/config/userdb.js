@@ -8,7 +8,7 @@ mongoose.connect(process.env.DBURI);
 const Schema = mongoose.Schema;
 const user = new Schema({
   id: Number,
-  email: String,
+  username: String,
   password: String,
   details: {
     name: String,
@@ -16,12 +16,7 @@ const user = new Schema({
     birthdate: Date,
     gender: String
   },
-  history: {
-    date: Date,
-    height: String,
-    weight: String,
-    pfat: Number
-  },
+  history: [],
   profile: {
     theme: String,
     lang: String

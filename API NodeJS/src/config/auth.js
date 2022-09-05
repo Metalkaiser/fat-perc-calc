@@ -1,6 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const userDetails = require('../database/userdb');
+const userDetails = require('./userdb');
 const bcrypt = require('bcrypt');
 
 passport.use(new LocalStrategy(
@@ -9,7 +9,7 @@ passport.use(new LocalStrategy(
     passwordField: 'password'
   },
   async (username,password,done) => {
-    userDetails.findOne({email: username}, async (err, usuario) => {
+    userDetails.findOne({username: username}, async (err, usuario) => {
       if (err) { 
         console.log("error");
         return done(err); 

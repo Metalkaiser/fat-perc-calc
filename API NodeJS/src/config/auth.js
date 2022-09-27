@@ -22,10 +22,10 @@ passport.use(new LocalStrategy(
       var boolPass = await bcrypt.compare(password, hash);
       if (!boolPass) {
         console.log("Contraseña incorrecta");
-        return done(null, false); 
+        return done(null, false);
       }
       console.log("Éxito");
-      return done(null, usuario);
+      return done(null, usuario.id);
     });
   }
 ));

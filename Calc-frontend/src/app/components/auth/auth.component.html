@@ -1,0 +1,50 @@
+<section>
+  <article>
+    <h3>Iniciar sesión</h3>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+      <div>
+        <label for="username">Usuario</label>
+        <input type="email" formControlName="username" id="username" placeholder="Usuario">
+      </div>
+      <div>
+        <label for="password">Contraseña</label>
+        <input type="password" formControlName="password" id="password" placeholder="Contraseña">
+      </div>
+      <input type="submit" value="Entrar">
+    </form>
+  </article>
+  <article>
+    <p>Si aún no tienes cuenta en esta aplicación, puedes registrarte llenando el formulario de abajo</p>
+    <h3>Registrar usuario nuevo</h3>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegister()">
+      <div>
+        <label for="username">Usuario</label>
+        <input type="email" formControlName="username" id="username" placeholder="Usuario">
+      </div>
+      <div>
+        <label for="password">Contraseña</label>
+        <input type="password" formControlName="password" id="password" placeholder="Contraseña">
+      </div>
+      <div>
+        <label for="name">Nombre</label>
+        <input type="text" formControlName="name" id="name" placeholder="Nombre">
+      </div>
+      <div>
+        <label for="lastname">Apellido</label>
+        <input type="text" formControlName="lastname" id="lastname" placeholder="Apellido">
+      </div>
+      <div>
+        <label for="birthdate">Fecha de nacimiento</label>
+        <input type="date" formControlName="birthdate" id="birthdate">
+      </div>
+      <div>
+        <label for="gender">Género</label>
+        <select formControlName="gender" id="gender">
+          <option value="male">Hombre</option>
+          <option value="female">Mujer</option>
+        </select>
+      </div>
+      <input type="submit" value="Entrar">
+    </form>
+  </article>
+</section>

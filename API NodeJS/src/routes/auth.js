@@ -4,7 +4,7 @@ const saltOrRounds = 12;
 
 const checkAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) { return next() }
-  res.redirect("/login")
+  res.json({success:false, statusCode:403});
 }
 
 const checkUnauthenticated = (req, res, next) => {
@@ -33,20 +33,20 @@ const newuser = async (req, n) => {
   if (req.body.username != "" && req.body.password != "" && req.body.name != "" && req.body.lastname != "" && req.body.birthdate != "" && req.body.gender != "") {
     var validateEmail = await userDetails.findOne({username:req.body.username});
     if (validateEmail != null) {
-      return "userExists";
+      return "userexists";
     }else {
       try {
         var dbRes = await userDetails.create(userinsert);
         if (n == 0) {
           
         }
-        return dbRes;
+        return 'success';
       } catch (error) {
         return error;
       }
     }
   }else {
-    return "emptyFields";
+    return "emptyfields";
   }
 }
 

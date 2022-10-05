@@ -18,7 +18,8 @@ const port = process.env.PORT;
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: { sameSite: 'strict' }
 }));
 
 app.use(bp.urlencoded({ extended: false }));
@@ -44,8 +45,9 @@ app.use('/fat', fat);
 app.use('/diet', diet);
 
 
-app.get('/', auth.checkAuthenticated, (req, res) => {
-  res.json({content:'Vista de bienvenida'});    //Aquí puede ir la vista de dashboard
+app.get('/', auth.checkAuthenticated, async (req, res) => {
+  let user = await userDetails.findOne({id:req.session.passport.user},{details:1,history:1,profile:1});
+  res.json({user:user});
 });
 
 app.route('/login')
@@ -57,7 +59,7 @@ app.route('/login')
     failureMessage: true
   }),
     (req, res) => {
-      res.json({success: true});
+      res.json({success: true, cookie: req.session.cookie});
   });
 
 app.post('/register', auth.checkUnauthenticated, async (req, res) => {

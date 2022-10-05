@@ -23,20 +23,43 @@ export class AuthComponent implements OnInit {
     password: ''
   });
 
-  constructor(private formBuilder: FormBuilder, private pruebaAuth:AuthserviceService) { }
+  constructor(private formBuilder: FormBuilder, private authServ:AuthserviceService) { }
 
   ngOnInit(): void {
   }
 
+  res:any;
+
   onSubmitRegister(): void {
-    console.log(this.registerForm.value);
-    //this.registerForm.reset();
+    this.authServ.register(this.registerForm.value).subscribe(
+      response => {
+        this.res = Object.values(response);
+        if (this.res[0] == 'success') {
+          console.log('User registered');
+          this.registerForm.reset();
+        }else if (this.res[0] == 'emptyfields') {
+          console.log('Empty fields');
+        } else {
+          console.log('User exists');
+        }
+      },
+      error => console.log(error)
+    )
   }
 
   onSubmitLogin(): void {
-    //console.log(this.loginForm.value);
-    this.pruebaAuth.pruebaApi(this.loginForm.value);
-    //this.loginForm.reset();
+    this.authServ.login(this.loginForm.value).subscribe(
+      response => {
+        this.res = Object.values(response);
+        if (this.res[0] == true) {
+          document.cookie="username";
+          window.location.reload();
+        } else {
+          console.log('login failed');
+        }
+      },
+      error => console.log(error)
+    );
   }
 
 }

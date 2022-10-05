@@ -1,5 +1,5 @@
 <div *ngIf="cookie; else auth">
-  <app-dashboard></app-dashboard>
+  <app-dashboard [items]="user"></app-dashboard>
 </div>
 <ng-template #auth>
   <app-auth></app-auth>

@@ -124,10 +124,10 @@ async function storeHistory(id, request) {
   }
 
   return {
-    'result': result,
+    'result': result.toFixed(2),
     'tip': tip,
-    'fat': fat,
-    'muscle': muscle
+    'fat': fat.toFixed(2),
+    'muscle': muscle.toFixed(2)
   };
 }
 

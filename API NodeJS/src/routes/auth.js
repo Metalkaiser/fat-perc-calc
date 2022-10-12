@@ -50,4 +50,4 @@ const newuser = async (req, n) => {
   }
 }
 
-module.exports = { checkAuthenticated, checkUnauthenticated, newuser };
+module.exports = { checkAuthenticated, checkUnauthenticated, bcrypt, saltOrRounds, newuser };

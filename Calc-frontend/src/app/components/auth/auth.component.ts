@@ -27,7 +27,7 @@ export class AuthComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  lang:any | undefined;
   res:any;
 
   onSubmitRegister(): void {
@@ -52,7 +52,9 @@ export class AuthComponent implements OnInit {
       response => {
         this.res = Object.values(response);
         if (this.res[0] == true) {
-          document.cookie="username";
+          document.cookie="gender="+this.res[1].details.gender;
+          document.cookie="theme="+this.res[1].profile.theme;
+          document.cookie="lang="+this.res[1].profile.lang;
           window.location.reload();
         } else {
           console.log('login failed');

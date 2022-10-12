@@ -1,0 +1,42 @@
+<section>
+  <article>
+    <h2>Ingresa los valores solicitados</h2>
+    <form [formGroup]="calform" (ngSubmit)="calculateCal()">
+      <div class="form-group">
+        <label for="weight" class="form-label">Tu peso (Kg)</label>
+        <input type="number" formControlName="weight" class="form-control" id="weight" placeholder="Tu peso (Kg)">
+      </div>
+      <div class="form-group">
+        <label for="height" class="form-label">Tu altura (cm)</label>
+        <input type="number" formControlName="height" class="form-control" id="height" placeholder="Tu altura (cm)">
+      </div>
+      <div class="form-group">
+        <label for="age" class="form-label">Edad</label>
+        <input type="number" formControlName="age" class="form-control" id="age" placeholder="Edad">
+      </div>
+      <div class="form-group">
+        <label for="activity" class="form-label">Nivel de actividad</label>
+        <select id="activity" class="form-control" formControlName="activity">
+          <option selected disabled value=null>Nivel de actividad</option>
+          <option value=1>Sedentario</option>
+          <option value=1.2>Mínimo</option>
+          <option value=1.375>Poco</option>
+          <option value=1.55>Moderado</option>
+          <option value=1.725>Fuerte</option>
+          <option value=1.9>Intenso</option>
+        </select>
+      </div>
+      <div class="text-center">
+        <input type="submit" value="Calcular" class="btn btn-info">
+      </div>
+    </form>
+  </article>
+  <article id="results" [style]="result">
+    <h2>Necesitas un mínimo de {{cal}} calorías díarias para mantener tu peso actual</h2>
+    <h2>Necesitas aproximadamente {{lose}} calorías díarias para bajar tu peso actual</h2>
+    <h2>Necesitas aproximadamente {{win}} calorías díarias para aumentar tu peso actual</h2>
+    <h2>Carbohidratos: {{hc}} gramos</h2>
+    <h2>Proteínas: {{pt}} gramos</h2>
+    <h2>Grasas: {{ft}} gramos </h2>
+  </article>
+</section>

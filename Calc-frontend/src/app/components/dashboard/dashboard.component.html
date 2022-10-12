@@ -1,2 +1,7 @@
-<p>dashboard works!</p>
-{{ items[0]?.history[1].pfat }}
+<section class="row">
+  <article class="col-md-6 text-center">
+    <h3>Bienvenido, {{items[0]?.details.name.substring(0,1).toUpperCase()}}{{items[0]?.details.name.substring(1)}}!</h3>
+    <p>Actualmente tiene {{ items[0]?.history.length - 1}} registro de mediciones de grasa corporal</p>
+  </article>
+  
+</section>

@@ -15,21 +15,15 @@ export class LandingComponent implements OnInit {
   user: any[]  = [];
 
   ngOnInit(): void { 
-    if (document.cookie == "") {
-      this.cookie = false; 
-    } else {
-      this.cookie = true;
-      this.authServ.dashboard().subscribe(
-        response => {
-          let currentItem = Object.values(response)
-          this.user = [
-            currentItem[0]
-          ]
-
-          console.log(currentItem[0])
-        },
-        error => console.log(error)
-      )
-    }
+    this.authServ.dashboard().subscribe(
+      response => {
+        let currentItem = Object.values(response)
+        this.user = [
+          currentItem[0]
+        ]
+        console.log(currentItem[0])
+      },
+      error => console.log(error)
+    )
    }
 }

@@ -58,14 +58,36 @@ app.route('/login')
     failureRedirect: '/login',
     failureMessage: true
   }),
-    (req, res) => {
-      res.json({success: true, cookie: req.session.cookie});
+    async (req, res) => {
+      let user = await userDetails.findOne({id:req.session.passport.user},{details:1,profile:1});
+      res.json({success: true, user: user});
   });
 
 app.post('/register', auth.checkUnauthenticated, async (req, res) => {
   var n = await userDetails.count();
   var result = await auth.newuser(req, n);
   res.json({result:result});
+});
+
+app.patch('/changepass', auth.checkAuthenticated, async (req, res) => {
+  let user = await userDetails.findOne({id:req.session.passport.user},{password:1});
+  result = await auth.bcrypt.compare(req.body.oldpass,user.password);
+  console.log('resultado: ' + result);
+  if (result) {
+    let hash = await auth.bcrypt.hash(req.body.newpass,auth.saltOrRounds);
+    await userDetails.updateOne({id:req.session.passport.user},{$set:{password:hash}})
+    res.json({resultado:result});
+  } else {
+    res.json({resultado:result});
+  }
+});
+
+app.patch('/changeprofile', auth.checkAuthenticated, async (req, res) => {
+  await userDetails.updateOne({id:req.session.passport.user},{$set:{
+    'profile.lang':req.body.lang,
+    'profile.theme':req.body.theme
+  }});
+  res.json({lang:req.body.lang,theme:req.body.theme});
 });
 
 app.delete("/logout", (req,res) => {

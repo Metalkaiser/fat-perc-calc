@@ -24,12 +24,12 @@ function calculateDiet(user, request) {
   fat = (cal*0.1)/9;
 
   return {
-    'calories': cal,
-    'hc': hc,
-    'pt': pt,
-    'ft': fat,
-    'win': win,
-    'lose': lose
+    'calories': cal.toFixed(2),
+    'hc': hc.toFixed(2),
+    'pt': pt.toFixed(2),
+    'ft': fat.toFixed(2),
+    'win': win.toFixed(2),
+    'lose': lose.toFixed(2)
   }
 }
 

@@ -1,0 +1,52 @@
+<section>
+  <article>
+    <div class="text-center">
+      <h4>Cambiar contraseña</h4>
+      <p>Si desea cambiar su contraseña, utilice el formulario a continuación</p>
+    </div>
+    <form [formGroup]="passForm" (ngSubmit)="changePass()">
+      <div class="form-group">
+        <label for="oldpass" class="form-label">Contraseña actual</label>
+        <input type="password" formControlName="oldpass" class="form-control" id="oldpass" placeholder="Contraseña actual">
+      </div>
+      <div class="form-group">
+        <label for="newpass" class="form-label">Contraseña nueva</label>
+        <input type="password" formControlName="newpass" class="form-control" id="newpass" placeholder="Contraseña nueva">
+      </div>
+      <div class="form-group">
+        <label for="passconf" class="form-label">Confirmar contraseña nueva</label>
+        <input type="password" formControlName="passconf" class="form-control" id="passconf" placeholder="Confirmar contraseña nueva">
+      </div>
+      <div class="text-center">
+        <input type="submit" class="btn btn-info" value="Cambiar contraseña">
+      </div>
+    </form>
+  </article>
+  <article>
+    <div class="text-center">
+      <h4>Cambiar configuraciones</h4>
+      <p>Estos items aún no están disponibles</p>
+    </div>
+    <form [formGroup]="profileForm" (ngSubmit)="profile()">
+      <div class="form-group">
+        <label for="lang" class="form-label">Idioma</label>
+        <select formControlName="lang" class="form-control" id="lang">
+          <option value="" selected disabled>Seleccione un idioma</option>
+          <option value="es">Español</option>
+          <option value="en">Inglés</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="theme" class="form-label">Tema del sitio</label>
+        <select formControlName="theme" class="form-control" id="theme">
+          <option value="" selected disabled>Seleccione un tema</option>
+          <option value="light">Claro</option>
+          <option value="dark">Oscuro</option>
+        </select>
+      </div>
+      <div class="text-center">
+        <input type="submit" class="btn btn-info" value="Aplicar cambios">
+      </div>
+    </form>
+  </article>
+</section>

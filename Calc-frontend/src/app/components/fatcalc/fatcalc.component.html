@@ -1,0 +1,67 @@
+<section>
+  <article>
+    <div class="text-center">
+      <h3>Calcular grasa corporal</h3>
+      <p>Para conocer su porcentaje de grasa corporal, llene todos los campos en el formulario a continuación</p>
+    </div>
+    <div *ngIf="male else female">
+      <form [formGroup]="fatFormMale" (ngSubmit)="calculateFat()">
+        <div class="form-group">
+          <label for="height" class="form-label">Estatura</label>
+          <input type="number" formControlName="height" class="form-control" id="height" placeholder="Estatura">
+        </div>
+        <div class="form-group">
+          <label for="neck" class="form-label">Cuello</label>
+          <input type="number" formControlName="neck" class="form-control" id="neck" placeholder="Cuello">
+        </div>
+        <div class="form-group">
+          <label for="waist" class="form-label">Cintura</label>
+          <input type="number" formControlName="waist" class="form-control" id="waist" placeholder="Cintura">
+        </div>
+        <div class="form-group">
+          <label for="weight" class="form-label">Peso (opcional)</label>
+          <input type="number" formControlName="weight" class="form-control" id="weight" placeholder="Peso (opcional)">
+        </div>
+        <div class="text-center">
+          <input type="submit" value="Calcular" class="btn btn-info">
+        </div>
+      </form>
+    </div>
+    <ng-template #female>
+      <form [formGroup]="fatFormFemale" (ngSubmit)="calculateFat()">
+        <div class="form-group">
+          <label for="height" class="form-label">Estatura</label>
+          <input type="number" formControlName="height" class="form-control" id="height" placeholder="Estatura">
+        </div>
+        <div class="form-group">
+          <label for="neck" class="form-label">Cuello</label>
+          <input type="number" formControlName="neck" class="form-control" id="neck" placeholder="Cuello">
+        </div>
+        <div class="form-group">
+          <label for="waist" class="form-label">Cintura</label>
+          <input type="number" formControlName="waist" class="form-control" id="waist" placeholder="Cintura">
+        </div>
+        <div class="form-group">
+          <label for="hip" class="form-label">Cadera</label>
+          <input type="number" formControlName="hip" class="form-control" id="hip" placeholder="Cadera">
+        </div>
+        <div class="form-group">
+          <label for="weight" class="form-label">Peso (opcional)</label>
+          <input type="number" formControlName="weight" class="form-control" id="weight" placeholder="Peso (opcional)">
+        </div>
+        <div class="text-center">
+          <input type="submit" value="Calcular" class="btn btn-info">
+        </div>
+      </form>
+     </ng-template>
+  </article>
+  <article id="results" [style]="resultdiv">
+    <h2>Tu porcentaje de grasa corporal es:</h2>
+    <div>
+      <h2>{{result}} %</h2>
+    </div>
+    <h4>Total masa muscular: {{muscle}} Kgs</h4>
+    <h4>Total grasa corporal: {{fat}} Kgs</h4>
+    <h4>{{tip}}</h4>
+  </article>
+</section>

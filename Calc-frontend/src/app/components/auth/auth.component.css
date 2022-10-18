@@ -1,0 +1,34 @@
+article {
+  position: relative;
+  margin: auto;
+}
+
+.title {
+  background-color: #f8f8f8;
+  height: 100%;
+  color: #000;
+  position: relative;
+}
+
+@media screen and (min-width: 960px) {
+  section {
+    height: 100vh;
+  }
+  .title-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+  }
+  .animate {
+    position: relative;
+    animation-name: appear;
+    animation-duration: 1s;
+  }
+
+  @keyframes appear {
+    from  {opacity: 10%;}
+    to {opacity: 100%;}
+  }
+}

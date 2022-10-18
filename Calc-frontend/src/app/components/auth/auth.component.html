@@ -1,8 +1,24 @@
 <section class="row">
-  <article class="col-md-6">
+  <article class="col-lg-6 title text-center">
+    <div class="title-logo p-3">
+      <div class="mb-3">
+        <img src="../../../assets/images/logo.webp" alt="FatCalc logo">
+      </div>
+      <h3>FatCalc</h3>
+      <p class="text-secondary">Aplicación para calcular porcentaje de grasa corporal</p>
+      <div class="text-center row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <button type="button" class="btn btn-info w-100" (click)="showRegister()">Registrar nuevo usuario</button>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    </div>
+  </article>
+  <article class="col-lg-6" id="login">
     <div class="text-center">
-      <p>...</p>
       <h3>Iniciar sesión</h3>
+      <p>Ingrese su correo electrónico y su contraseña</p>
     </div>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
       <div class="form-group">
@@ -13,13 +29,17 @@
         <label for="password" class="form-label">Contraseña</label>
         <input type="password" formControlName="password" class="form-control" id="password" placeholder="Contraseña">
       </div>
-      <div class="text-center">
-        <input type="submit" value="Entrar" class="btn btn-info">
+      <div class="text-center row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <input type="submit" value="Entrar" class="btn btn-info w-100">
+        </div>
+        <div class="col-md-4"></div>
       </div>
     </form>
   </article>
   
-  <article class="col-md-6">
+  <article class="col-lg-6" id="register" style="display: none;">
     <div class="text-center">
       <p>Si aún estás registrado en la plataforma, puedes hacerlo con el formulario acá abajo</p>
       <h3>Registrar nuevo usuario</h3>
@@ -53,8 +73,16 @@
           <option value="female">Mujer</option>
         </select>
       </div>
-      <div class="text-center">
-        <input type="submit" value="Registrarse" class="btn btn-info">
+      <div class="text-center row">
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+          <input type="submit" value="Registrarse" class="btn btn-info w-100">
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+          <button type="button" class="btn btn-danger w-100" (click)="showLogin()">Cancelar</button>
+        </div>
+        <div class="col-md-2"></div>
       </div>
     </form>
   </article>

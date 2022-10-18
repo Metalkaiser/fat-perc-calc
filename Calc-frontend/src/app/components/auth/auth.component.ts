@@ -64,4 +64,18 @@ export class AuthComponent implements OnInit {
     );
   }
 
+  showRegister(): void {
+    (<HTMLInputElement>document.getElementById("login")).style.display = 'none';
+    (<HTMLInputElement>document.getElementById("register")).style.display = 'block';
+    (<HTMLInputElement>document.getElementById("register")).className = 'col-lg-6 animate';
+    (<HTMLInputElement>document.getElementById("login")).className = 'col-lg-6';
+  }
+
+  showLogin(): void {
+    (<HTMLInputElement>document.getElementById("register")).style.display = 'none';
+    (<HTMLInputElement>document.getElementById("login")).style.display = 'block';
+    (<HTMLInputElement>document.getElementById("login")).className = 'col-lg-6 animate';
+    (<HTMLInputElement>document.getElementById("register")).className = 'col-lg-6';
+  }
+
 }

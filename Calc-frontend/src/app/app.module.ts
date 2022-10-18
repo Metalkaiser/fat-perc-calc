@@ -15,6 +15,7 @@ import { CalcalcComponent } from './components/calcalc/calcalc.component';
 import { HistoryComponent } from './components/history/history.component';
 import { ConfigsComponent } from './components/configs/configs.component';
 import { HelpComponent } from './components/help/help.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { HelpComponent } from './components/help/help.component';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgApexchartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

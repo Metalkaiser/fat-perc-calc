@@ -1,7 +1,34 @@
 <section class="row">
-  <article class="col-md-6 text-center">
-    <h3>Bienvenido, {{items[0]?.details.name.substring(0,1).toUpperCase()}}{{items[0]?.details.name.substring(1)}}!</h3>
-    <p>Actualmente tiene {{ items[0]?.history.length - 1}} registro de mediciones de grasa corporal</p>
+  <article class="col-md-6 text-center card text-dark">
+    <div class="card-header">
+      <h3>Bienvenido, {{items[0].details.name.substring(0,1).toUpperCase()}}{{items[0].details.name.substring(1)}}!</h3>
+      <p>Actualmente tiene {{ items[0].history.length - 1}} registro de mediciones de grasa corporal</p>
+    </div>
+    <div class="card-body">
+      <div class="text-left p-4" *ngIf="items[0].history.length - 1; else cero">
+        <h5>Su última medida indica:</h5>
+        <div class="text-right">
+          <p>{{items[0].history[items[0].history.length - 1].pfat.toFixed(2)}}% de grasa corporal.</p>
+          <p>{{items[0].history[items[0].history.length - 1].weight.toFixed(2)}} Kgs de peso total.</p>
+        </div>
+      </div>
+      <ng-template #cero>
+        <p>Para medir su porcentaje de grasa corporal,</p>
+        <a href="fatcalc">haga click aquí</a>
+      </ng-template>
+    </div>
   </article>
-  
+  <article class="col-md-6 pr-4 pl-4">
+    <div *ngIf="items[0].history.length - 1" id="chart" class="bg-light text-dark rounded">
+      <apx-chart
+        [series]="chartOptions.series"
+        [chart]="chartOptions.chart"
+        [xaxis]="chartOptions.xaxis"
+        [dataLabels]="chartOptions.dataLabels"
+        [grid]="chartOptions.grid"
+        [stroke]="chartOptions.stroke"
+        [title]="chartOptions.title"
+      ></apx-chart>
+    </div>
+  </article>
 </section>

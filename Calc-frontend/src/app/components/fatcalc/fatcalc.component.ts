@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms'
 import { FatcalcService } from "../../services/fatcalc.service";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-fatcalc',
@@ -47,7 +48,6 @@ export class FatcalcComponent implements OnInit {
   muscle:number = 0;
   fat:number = 0;
   tip:string = '';
-  resultdiv = 'display:none;';
 
   calculateFat(): void {
     if (this.male) {
@@ -63,21 +63,65 @@ export class FatcalcComponent implements OnInit {
     let wt = this.form.value.weight;
     let n = this.form.value.neck;
     //verifica los campos numéricos
-    if (typeof(h) != 'number' || typeof(n) != 'number' || typeof(ws) != 'number' || typeof(wt) != 'number') {
+    if (typeof(h) != 'number') {
       this.ffields = false;
+      console.log('height');
+      console.log(typeof(h));
+    }else if (typeof(n) != 'number') {
+      this.ffields = false;
+      console.log('neck');
+      console.log(typeof(n));
+    } else if (typeof(ws) != 'number') {
+      this.ffields = false;
+      console.log('waist');
+      console.log(typeof(ws));
+    } else if (typeof(wt) != 'number') {
+      this.ffields = false
+      console.log('weight');
+      console.log(typeof(wt));
     }
     if (this.ffields) {
       this.fatCalc.calculate(this.form.value).subscribe(
         response => {
-        console.log(Object.values(response));
         this.result = Object.values(response)[0];
         this.muscle = Object.values(response)[3];
         this.fat = Object.values(response)[2];
-        this.resultdiv = 'display:block;';
+        switch (Object.values(response)[1]) {
+          case 'underweight':
+            this.tip = 'Usted necesita ganar algo de peso';
+            break;
+          case 'healthy':
+            this.tip = 'Usted tiene un peso saludable';
+            break;
+          case 'warning':
+            this.tip = 'Usted tiene un peso saludable, aunque es recomendable que pierda un poco de grasae';
+            break;
+          case 'overweight':
+            this.tip = 'Usted tiene sobrepeso y necesita perder algo de peso';
+            break;
+          case 'obesity':
+            this.tip = 'Usted sufre de obesidad y necesita perder peso <strong style=\'color:red\'>urgentemente</strong>';
+            break;
+          default:
+            break;
+        }
+        (<HTMLInputElement>document.getElementById("tip")).innerHTML = this.tip;
+        (<HTMLInputElement>document.getElementById("results")).style.display = "flex";
         }
       );
     }else {
-      console.log('Incorrecto');
+      Swal.fire({
+        title:'Error',
+        icon:'error',
+        text:'Llene los campos únicamente con información numérica',
+        confirmButtonColor:'#17a2b8',
+        allowOutsideClick:false,
+        allowEscapeKey:false,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        }
+      });
     }
   }
 

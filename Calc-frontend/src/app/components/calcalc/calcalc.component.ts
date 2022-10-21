@@ -5,7 +5,8 @@ import { FatcalcService } from 'src/app/services/fatcalc.service';
 @Component({
   selector: 'app-calcalc',
   templateUrl: './calcalc.component.html',
-  styleUrls: ['./calcalc.component.css']
+  //styleUrls: ['./calcalc.component.css']
+  styleUrls: ['../fatcalc/fatcalc.component.css']
 })
 export class CalcalcComponent implements OnInit {
 
@@ -18,7 +19,6 @@ export class CalcalcComponent implements OnInit {
     activity: null
   });
 
-  result = 'display:none;';
   cal:number = 0;
   win:number = 0;
   lose:number = 0;
@@ -42,8 +42,7 @@ export class CalcalcComponent implements OnInit {
         this.ft = Object.values(response)[3];
       }
     );
-    this.result = 'display:block;';
-    console.log(this.calform.value);
+    (<HTMLInputElement>document.getElementById("results")).style.display = "flex";
   }
 
 }

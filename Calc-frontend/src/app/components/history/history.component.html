@@ -1,1 +1,55 @@
-{{user}}
+<section>
+  <article class="p-4 text-dark">
+    <div *ngIf="items[0].history.length; else nada" id="chart" class="p-4 bg-white rounded">
+      <apx-chart
+        [series]="chartOptions.series"
+        [chart]="chartOptions.chart"
+        [xaxis]="chartOptions.xaxis"
+        [dataLabels]="chartOptions.dataLabels"
+        [grid]="chartOptions.grid"
+        [stroke]="chartOptions.stroke"
+        [title]="chartOptions.title"
+      ></apx-chart>
+    </div>
+    <ng-template #nada>
+      <div class="bg-light text-dark rounded p-5">
+        <h3>De momento, usted aún no ha medido su grasa corporal ni una vez.</h3>
+        <p>haga <a href="fatcalc">click aquí</a> para calcular su porcentaje de grasa corporal</p>
+      </div>
+    </ng-template>
+  </article>
+  <article class="row p-4 text-dark" *ngIf="items[0].history.length - 1">
+    <div class="col-md-6 p-4">
+      <div class="bg-white rounded p-4 text-center">
+        <h4>Sus últimas {{items[0].history.length >= 5 ? 5 : items[0].history.length}} medidas:</h4>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Fecha</th>
+              <th scope="col">Peso</th>
+              <th scope="col">% grasa</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let medida of historial">
+              <td>{{medida.date.substring(0,10)}}</td>
+              <td>{{medida.weight}} Kgs</td>
+              <td>{{medida.pfat.toFixed(2)}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-6 p-4">
+      <div class="bg-white rounded p-4 text-center">
+        <div class="text-left">
+          <h4>Recomendaciones</h4>
+          <p>Su última medida fue el día {{historial[0].date.substring(8,10)}}/{{historial[0].date.substring(5,7)}}/{{historial[0].date.substring(0,4)}}</p>
+          <p>Su peso fue: {{historial[0].weight}} kilogramos</p>
+          <p>Su porcentaje de grasa corporal fue de {{historial[0].pfat.toFixed(2)}}%</p>
+        </div>
+        <img src="{{imagen}}" style="max-width: 80%;" alt="Tabla de porcentajes">
+      </div>
+    </div>
+  </article>
+</section>

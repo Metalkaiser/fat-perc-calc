@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { AuthserviceService } from 'src/app/authservice.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-auth',
@@ -35,12 +36,31 @@ export class AuthComponent implements OnInit {
       response => {
         this.res = Object.values(response);
         if (this.res[0] == 'success') {
-          console.log('User registered');
+          Swal.fire({
+            title:'Usuario registrado',
+            icon:'success',
+            text:'Ya puede iniciar sesión con su nueva cuenta',
+            confirmButtonColor:'#17a2b8'
+          });
           this.registerForm.reset();
         }else if (this.res[0] == 'emptyfields') {
-          console.log('Empty fields');
+          Swal.fire({
+            title:'Error',
+            icon:'error',
+            text:'Llene todos los campos requeridos',
+            confirmButtonColor:'#17a2b8',
+            allowOutsideClick:false,
+            allowEscapeKey:false,
+          })
         } else {
-          console.log('User exists');
+          Swal.fire({
+            title:'Error',
+            icon:'error',
+            text:'Ya hay un usuario registrado con ese correo',
+            confirmButtonColor:'#17a2b8',
+            allowOutsideClick:false,
+            allowEscapeKey:false,
+          })
         }
       },
       error => console.log(error)
@@ -57,7 +77,14 @@ export class AuthComponent implements OnInit {
           document.cookie="lang="+this.res[1].profile.lang;
           window.location.reload();
         } else {
-          console.log('login failed');
+          Swal.fire({
+            title:'Error',
+            icon:'error',
+            text:'Asegúrese de haber ingresado correctamente su correo y contraseña',
+            confirmButtonColor:'#17a2b8',
+            allowOutsideClick:false,
+            allowEscapeKey:false,
+          })
         }
       },
       error => console.log(error)

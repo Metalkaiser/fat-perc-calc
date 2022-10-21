@@ -1,6 +1,9 @@
-<section>
-  <article>
-    <h2>Ingresa los valores solicitados</h2>
+<section class="row">
+  <article class="col-md-6 pr-4 pl-4">
+    <div class="text-center">
+      <h3>Calcular calorías diarias</h3>
+      <p>Para conocer sus necesidades calóricas diarias, llene todos los campos en el formulario a continuación</p>
+    </div>
     <form [formGroup]="calform" (ngSubmit)="calculateCal()">
       <div class="form-group">
         <label for="weight" class="form-label">Tu peso (Kg)</label>
@@ -31,12 +34,21 @@
       </div>
     </form>
   </article>
-  <article id="results" [style]="result">
-    <h2>Necesitas un mínimo de {{cal}} calorías díarias para mantener tu peso actual</h2>
-    <h2>Necesitas aproximadamente {{lose}} calorías díarias para bajar tu peso actual</h2>
-    <h2>Necesitas aproximadamente {{win}} calorías díarias para aumentar tu peso actual</h2>
-    <h2>Carbohidratos: {{hc}} gramos</h2>
-    <h2>Proteínas: {{pt}} gramos</h2>
-    <h2>Grasas: {{ft}} gramos </h2>
+  <article id="results" class="col-md-6 flex-column mt-3">
+    <div class="d-flex justify-content-around flex-column bg-white rounded text-dark mr-4 ml-4">
+      <div class="p-3 rounded-top">
+        <h3>Calorías diarias aproximadas que necesitas:</h3>
+      </div>
+      <div class="bg-light p-3">
+        <h4>Mínimo {{cal}} calorías para mantener tu peso actual</h4>
+        <p>Carbohidratos: {{hc}} gramos</p>
+        <p>Proteínas: {{pt}} gramos</p>
+        <p>Grasas: {{ft}} gramos </p>
+      </div>
+      <div class="bg-light rounded-bottom p-3">
+        <h4>{{lose}} calorías para bajar tu peso actual</h4>
+        <h4>{{win}} calorías para aumentar tu peso actual</h4>
+      </div>
+    </div>
   </article>
 </section>

@@ -18,7 +18,7 @@
       </div>
     </ng-template>
   </article>
-  <article class="row p-4 text-dark" *ngIf="items[0].history.length - 1">
+  <article class="row p-4 text-dark" *ngIf="items[0].history.length">
     <div class="col-md-6 p-4">
       <div class="bg-white rounded p-4 text-center">
         <h4>Sus últimas {{items[0].history.length >= 5 ? 5 : items[0].history.length}} medidas:</h4>

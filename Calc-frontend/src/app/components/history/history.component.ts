@@ -51,7 +51,9 @@ export class HistoryComponent implements OnInit {
           currentItem[0]
         ];
 
-        console.log(currentItem[0].details.gender);
+        currentItem[0].details.gender == 'female' ? 
+          this.imagen = '../../../assets/images/grasa-corporal-mujeres.webp'
+          : this.imagen = '../../../assets/images/grasa-corporal-hombres.webp';
 
         currentItem[0].history.shift();
         this.historial = currentItem[0].history.slice(0,currentItem[0].history.length);

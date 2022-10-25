@@ -1,0 +1,21 @@
+{
+  "name": "calculadora-grasa",
+  "version": "1.0.0",
+  "description": "Directorio raíz para la app de calculadora de grasa",
+  "scripts": {
+    "client": "cd Calc-frontend && ng serve -o",
+    "server": "cd 'API NodeJS' && npm start",
+    "start": "concurrently \"npm run client\" \"npm run server\" ",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Metalkaiser/fat-perc-calc.git"
+  },
+  "author": "Juan Polanco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Metalkaiser/fat-perc-calc/issues"
+  },
+  "homepage": "https://github.com/Metalkaiser/fat-perc-calc#readme"
+}
